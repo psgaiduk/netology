@@ -10,6 +10,15 @@ class TestSuit:
         m_input.side_effect = ['q']
         assert app.secretary_program_start() is None
 
+    # ??? Не знаю, как тут проверить, там же нет никакого возвращения данных, но проверять то наверное надо
+    # Либо в отдельную функцию заносить этот вывод??
+    # И наверно надо проверять все команды ???
+
+    # @patch('builtins.input')
+    # def test_secretary_program_start_end(self, m_input):
+    #     m_input.side_effect = ['help']
+    #     assert app.secretary_program_start()
+
     @patch('builtins.input')
     @pytest.mark.parametrize("test_input,expected", [(["11-2"], "Геннадий Покемонов"),
                                                      (["2207 876234"], "Василий Гупкин"),
@@ -55,6 +64,7 @@ class TestSuit:
         app.delete_doc()
         assert app.get_doc_owner_name() is None
 
+    # Одновременная проверка переноса и добавления новой полки
     @patch('builtins.input')
     @pytest.mark.parametrize("test_input,expected", [(['11-2', '3', '11-2'], '3'),
                                                      (['11-2', '4', '11-2'], '4')])
