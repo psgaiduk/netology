@@ -18,3 +18,6 @@ class TestSuit:
         m_input.side_effect = test_input
         assert app.get_doc_owner_name() == expected
 
+    def test_get_all_doc_owners_names(self):
+        assert app.get_all_doc_owners_names() == {'Геннадий Покемонов', 'Аристарх Павлов', 'Василий Гупкин'}
+
