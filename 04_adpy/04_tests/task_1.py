@@ -42,3 +42,17 @@ class TestSuit:
     def test_get_doc_shelf(self, m_input, test_input, expected):
         m_input.side_effect = test_input
         assert app.get_doc_shelf() == expected
+
+    @patch('builtins.input')
+    def test_add_new_doc(self, m_input):
+        m_input.side_effect = ['11', 'type doc', 'Owner name', '3']
+        query_assert = {"type": "type doc", "number": "11", "name": "Owner name"}
+        assert app.show_document_info(query_assert) == 'type doc "11" "Owner name"'
+
+    @patch('builtins.input')
+    def test_delete_doc(self, m_input):
+        m_input.side_effect = ['11-2','11-2']
+        app.delete_doc()
+        assert app.get_doc_owner_name() is None
+
+
