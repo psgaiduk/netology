@@ -21,3 +21,17 @@ class TestSuit:
     def test_get_all_doc_owners_names(self):
         assert app.get_all_doc_owners_names() == {'Геннадий Покемонов', 'Аристарх Павлов', 'Василий Гупкин'}
 
+    # ??? Непонятно надо ли такие функции проверять, которые работают через другие функции?
+    # def test_show_all_docs_info(self):
+    #     assert app.show_all_docs_info() == ''
+
+    @pytest.mark.parametrize("test_input,expected", [
+        ({"type": "invoice", "number": "11-2", "name": "Геннадий Покемонов"},
+            'invoice "11-2" "Геннадий Покемонов"'),
+        ({"type": "passport", "number": "2207 876234", "name": "Василий Гупкин"},
+            'passport "2207 876234" "Василий Гупкин"'),
+        ({"type": "insurance", "number": "10006", "name": "Аристарх Павлов"},
+            'insurance "10006" "Аристарх Павлов"')])
+    def test_show_document_info(self, test_input, expected):
+        assert app.show_document_info(test_input) == expected
+

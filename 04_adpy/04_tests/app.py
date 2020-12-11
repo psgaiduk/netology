@@ -101,6 +101,7 @@ def show_document_info(document):
     doc_number = document['number']
     doc_owner_name = document['name']
     print('{} "{}" "{}"'.format(doc_type, doc_number, doc_owner_name))
+    return '{} "{}" "{}"'.format(doc_type, doc_number, doc_owner_name)
 
 
 def show_all_docs_info():
