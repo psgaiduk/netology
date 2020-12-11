@@ -55,4 +55,12 @@ class TestSuit:
         app.delete_doc()
         assert app.get_doc_owner_name() is None
 
+    @patch('builtins.input')
+    @pytest.mark.parametrize("test_input,expected", [(['11-2', '3', '11-2'], '3'),
+                                                     (['11-2', '4', '11-2'], '4')])
+    def test_move_doc_to_shelf(self, m_input, test_input, expected):
+        m_input.side_effect = test_input
+        app.move_doc_to_shelf()
+        assert app.get_doc_shelf() == expected
+
 
